@@ -12,18 +12,9 @@ Gem::Specification.new do |spec|
   spec.authors = ["Benjamin Hargett"]
   spec.email = ["hargettbenjamin@gmail.com"]
   spec.homepage = "https://github.com/bharget/heroicon"
-  spec.summary = "Summary of Heroicon."
-  spec.description = "Description of Heroicon."
+  spec.summary = "Rails View Helpers for Heroicons."
+  spec.description = "Ruby on Rails view helpers for the beautiful hand-crafted SVG icons, Heroicons."
   spec.license = "MIT"
-
-  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
-  # to allow pushing to a single host or delete this section to allow pushing to any host.
-  if spec.respond_to?(:metadata)
-    spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
-  else
-    raise "RubyGems 2.0 or newer is required to protect against " \
-      "public gem pushes."
-  end
 
   spec.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
