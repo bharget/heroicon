@@ -1,0 +1,30 @@
+name: CI
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby: [2.5, 2.6, 2.7]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Setup Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install libsqlite3-dev
+          gem update --system
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+
+      - name: Lint
+        run: bundle exec rake lint
+
+      - name: Tests
+        run: bundle exec rake test:all

@@ -1,0 +1,124 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "bundler/gem_tasks"
+require "pathname"
+
+RELEASE_TYPE = ARGV[0]
+
+class BranchCheck
+  attr_reader :allowed_branches, :current_branch
+
+  def initialize
+    @current_branch = `git rev-parse --abbrev-ref HEAD`.strip
+    @allowed_branches = ["master"]
+  end
+
+  def check
+    return true if valid?
+
+    abort("\nError: Not on a valid release branch. Must be on one of #{allowed_branches}.\n")
+  end
+
+  def valid?
+    allowed_branches.include? current_branch
+  end
+end
+
+class GitCheck
+  attr_reader :diff
+
+  def initialize
+    @diff = `git status -s`
+  end
+
+  def check
+    return true if valid?
+
+    abort("\nError: Git working tree is dirty. Please commit or stash your changes.\n")
+  end
+
+  def valid?
+    diff.empty?
+  end
+end
+
+class ReleaseTypeCheck
+  attr_reader :allowed_release_types, :release_type
+
+  def initialize
+    @release_type = RELEASE_TYPE
+    @allowed_release_types = %w[major minor patch]
+  end
+
+  def check
+    return true if valid?
+
+    abort("\nError: Release type #{release_type} is invalid; must be one of #{allowed_release_types}.\n")
+  end
+
+  def valid?
+    allowed_release_types.include? release_type
+  end
+end
+
+class RubyGemsCheck
+  def check
+    return true if valid?
+
+    abort("\nError: You must be logged in to RubyGems. Run 'gem signin'")
+  end
+
+  def valid?
+    `gem signin`.empty?
+  end
+end
+
+[ReleaseTypeCheck, BranchCheck, GitCheck, RubyGemsCheck].each do |check_class|
+  check_class.new.check
+end
+
+APP_ROOT = Pathname.new File.expand_path("..", __dir__)
+
+current_version = Heroicon::VERSION.split(".").map(&:to_i)
+
+case RELEASE_TYPE
+when "major"
+  current_version[0] += 1
+  current_version[1] = 0
+  current_version[2] = 0
+when "minor"
+  current_version[1] += 1
+  current_version[2] = 0
+when "patch"
+  current_version[2] += 1
+end
+
+new_version = current_version.join(".")
+
+puts "--- Updating version to #{new_version} ---"
+
+version_file_contents = <<~FILE
+  # frozen_string_literal: true
+
+  module Heroicon
+    VERSION = "#{new_version}"
+  end
+FILE
+
+File.write("#{APP_ROOT}/lib/heroicon/version.rb", version_file_contents)
+
+puts "--- Update CHANGELOG ---"
+`bundle exec rake changelog:refresh`
+
+puts "--- Adding Files ---"
+`git add .`
+
+puts "--- Commiting Changes ---"
+`git commit -m 'Bump version to #{new_version}'`
+
+puts "--- Pushing Changes ---"
+`git push origin master`
+
+puts "--- Publishing Gem ---"
+`bundle exec rake release`

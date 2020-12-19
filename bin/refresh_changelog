@@ -1,0 +1,198 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "heroicon/version"
+require "active_support/core_ext/module/delegation"
+require "date"
+
+module AutoChangelog
+  class Configuration
+    attr_accessor :app_version
+    attr_accessor :entry_sections
+    attr_accessor :filename
+
+    def initialize
+      @app_version = nil
+      @entry_sections = []
+      @filename = "CHANGELOG.md"
+    end
+  end
+
+  class Log
+    delegate \
+      :app_version,
+      :entry_sections,
+      :filename,
+      to: "AutoChangelog.configuration"
+
+    def initialize
+      @log = read_changelog
+    end
+
+    def refresh
+      add_changelog_entry
+
+      File.write(filename, @log)
+    end
+
+    private
+
+    ##
+    # Generates a new changelog entry for the current version and
+    # adds it to the contents of the file.
+    #
+    # The logic takes into account if this is the first entry being
+    # generated or if there has already been an entry generated for
+    # the current version and overwrites it.
+    def add_changelog_entry
+      if most_recent_entry.empty?
+        @log += "\n#{text_to_replace}"
+      elsif most_recent_entry_for_current_version?
+        @log[most_recent_entry] = text_to_replace
+      end
+
+      @log[text_to_replace] = entry_text.strip
+    end
+
+    def current_commit_sha
+      @current_commit_sha ||= `git rev-parse --short HEAD`.strip
+    end
+
+    def default_header_text
+      <<~HEADER
+        # Changelog
+
+        All notable changes to this project will be documented in this file.
+
+        This project adheres to [Semantic Versioning](https://semver.org).
+
+        This file is auto-generated so please do not edit it.
+      HEADER
+    end
+
+    ##
+    # Generate the text for a given entry section
+    #
+    # Example:
+    #   ### Section Title
+    #   - Git commit message
+    #   - Git commit message
+    def entry_section_text(section)
+      git_messages_by_marker(section[:marker]).then do |git_messages|
+        return "" if git_messages.empty?
+
+        section_header = "### #{section[:title]}\n"
+
+        section_header + git_messages.map { |message| "- #{message}\n" }.join
+      end
+    end
+
+    ##
+    # Generate the text for each entry section and join it together
+    def entry_sections_text
+      entry_sections.map { |section| entry_section_text(section) }.join.strip
+    end
+
+    ##
+    # Example:
+    #   ----
+    #   ## [0.1.0] - Sept. 12, 2020
+    #   5a95ec3
+    #   ### Bug Fixes
+    #   - Git commit message
+    #   - Git commit message
+    #   ### Features
+    #   - Git commit message
+    #   ----
+    def entry_text
+      <<~ENTRY
+        ----
+        ## [#{app_version}] - #{formatted_date}
+        #{current_commit_sha}
+        #{entry_sections_text}
+        ----
+      ENTRY
+    end
+
+    def formatted_date
+      Date.today.strftime("%b %e, %Y")
+    end
+
+    ##
+    # Grabs all the commit messages between the current commit sha
+    # and the last commit sha in the changelog. If this is the first
+    # entry being generated for the changelog then there will be no
+    # previous sha so we want to check all commit messages.
+    def git_commits_between_versions
+      return `git log` if previous_commit_sha.nil?
+
+      `git log #{current_commit_sha}...#{previous_commit_sha}`
+    end
+
+    ##
+    # Parses the git log looking for the specified marker for a
+    # given entry section matching the line that contains it.
+    def git_messages_by_marker(marker)
+      git_commits_between_versions
+        .scan(/^(.*)#{marker}(.*)$/)
+        .map { |message| message.map(&:strip).join(" ") }
+    end
+
+    ##
+    # Each changelong entry is delineated by "----" to allow us to
+    # easily determine where one entry starts and another stops.
+    # This regex will grab the first entry in the list.
+    def most_recent_entry_regex
+      /----(.*?)----/m
+    end
+
+    def read_changelog
+      return File.read(filename) if File.exist?(filename)
+
+      default_header_text
+    end
+
+    def most_recent_entry
+      @log[most_recent_entry_regex] || ""
+    end
+
+    def most_recent_entry_for_current_version?
+      most_recent_entry.include? "## [#{app_version}]"
+    end
+
+    def previous_commit_sha
+      @previous_commit_sha ||= most_recent_entry.split("\n")[2]
+    end
+
+    def text_to_replace
+      "----"
+    end
+  end
+
+  def self.configuration
+    @configuration ||= Configuration.new
+  end
+
+  def self.configure
+    yield configuration
+  end
+
+  def self.refresh
+    Log.new.refresh
+  end
+end
+
+AutoChangelog.configure do |config|
+  config.app_version = Heroicon::VERSION
+
+  config.entry_sections = [
+    {title: "Bug Fixes", marker: ";B"},
+    {title: "Changes", marker: ";C"},
+    {title: "Deprecations", marker: ";D"},
+    {title: "Features", marker: ";F"},
+    {title: "Removed", marker: ";R"},
+    {title: "Security", marker: ";S"}
+  ]
+end
+
+AutoChangelog.refresh
