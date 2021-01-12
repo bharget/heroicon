@@ -2,7 +2,7 @@
 [![Build Status](https://github.com/bharget/heroicon/workflows/CI/badge.svg)](https://github.com/bharget/heroicon/actions)
 [![Ruby Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/testdouble/standard)
 
-Ruby on Rails view helpers for the beautiful hand-crafted SVG icons, by the makers of Tailwind CSS. This gem has no official affiliation with Tailwind CSS or the Heroicon team.
+Ruby on Rails view helpers for the beautiful hand-crafted SVG icons, Heroicons. This gem has no official affiliation with Tailwind CSS or the Heroicon team.
 
 Check out their sites:
 
