@@ -31,7 +31,7 @@ module Heroicon
     end
 
     def file
-      @file ||= Rails.application.assets.find_asset("heroicon/#{variant}/#{name}.svg").source.force_encoding("UTF-8")
+      @file ||= Rails.application.assets_manifest.find_sources("heroicon/#{variant}/#{name}.svg").first.force_encoding("UTF-8")
     rescue
       nil
     end
