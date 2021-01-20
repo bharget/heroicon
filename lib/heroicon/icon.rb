@@ -31,9 +31,13 @@ module Heroicon
     end
 
     def file
-      @file ||= Rails.application.assets_manifest.find_sources("heroicon/#{variant}/#{name}.svg").first.force_encoding("UTF-8")
+      @file ||= File.read(file_path).force_encoding("UTF-8")
     rescue
       nil
+    end
+
+    def file_path
+      File.join(Heroicon.root, "app/assets/images/heroicon/#{variant}/#{name}.svg")
     end
 
     def warning

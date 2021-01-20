@@ -5,4 +5,7 @@ require "heroicon/icon"
 require "heroicon/configuration"
 
 module Heroicon
+  def self.root
+    File.dirname(__dir__)
+  end
 end
