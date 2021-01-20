@@ -2,9 +2,12 @@
 [![Build Status](https://github.com/bharget/heroicon/workflows/CI/badge.svg)](https://github.com/bharget/heroicon/actions)
 [![Ruby Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/testdouble/standard)
 
-Ruby on Rails view helpers for the beautiful hand-crafted SVG icons, Heroicons. This gem has no official affiliation with Tailwind CSS or the Heroicon team.
+Ruby on Rails view helpers for the beautiful hand-crafted SVG icons, Heroicons.
 
-Check out their sites:
+ Used in production at [Morning Brew ☕](https://www.morningbrew.com/?utm_source=bharget_github)
+
+
+This gem has no official affiliation with Tailwind CSS or the Heroicon team (yet!). Check out their sites:
 
 - [Tailwind CSS](https://tailwindcss.com/?utm_source=bharget_github)
 - [Tailwind UI](https://tailwindui.com/?utm_source=bharget_github)
@@ -47,7 +50,7 @@ You can also pass a class to use on the icon.
 <%= heroicon "search", options: { class: "text-primary-500" } %>
 ```
 
-Heroicon currently supports icons up to `Version 0.4.2`. If there is a icon that is missing, feel free to contribute by following our contributing guide below.
+Heroicon currently supports icons up to [`Version 0.4.2`](https://github.com/tailwindlabs/heroicons/releases/tag/v0.4.2). If there is a icon that is missing, feel free to contribute by following our contributing guide below.
 
 ## Contributing
 
