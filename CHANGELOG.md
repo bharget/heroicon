@@ -7,6 +7,12 @@ This project adheres to [Semantic Versioning](https://semver.org).
 This file is auto-generated so please do not edit it.
 
 ----
+## [0.2.2] - Jan 21, 2021
+f8f5628
+### Changes
+- Reads icons directly from file rather than using asset pipeline 
+- Update README to match Official Heroicon Package Version
+----
 ## [0.2.1] - Jan 15, 2021
 7550bc5
 
