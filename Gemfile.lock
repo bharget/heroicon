@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    heroicon (0.2.2)
+    heroicon (0.2.3)
       rails (>= 5.2)
 
 GEM

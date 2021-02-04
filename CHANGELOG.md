@@ -7,6 +7,13 @@ This project adheres to [Semantic Versioning](https://semver.org).
 This file is auto-generated so please do not edit it.
 
 ----
+## [0.2.3] - Feb  3, 2021
+b30c44e
+### Bug Fixes
+- Adjust keyword argument delegation to support Ruby 3.0 (#2) 
+### Changes
+- Update Tests to use Rails main
+----
 ## [0.2.2] - Jan 21, 2021
 f8f5628
 ### Changes
