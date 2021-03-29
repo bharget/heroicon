@@ -15,6 +15,10 @@ module Heroicon
 
       doc = Nokogiri::HTML::DocumentFragment.parse(file)
       svg = doc.at_css "svg"
+      stroke_width = options.delete(:stroke_width)
+      svg.css("path[stroke-width]").each do |item|
+        item["stroke-width"] = stroke_width.to_s
+      end if stroke_width
       options.each do |key, value|
         svg[key.to_s] = value
       end
