@@ -19,7 +19,7 @@ module Heroicon
       svg = doc.at_css "svg"
 
       EDITABLE_ATTRIBUTES.each do |attribute|
-        value = options.delete(attribute.underscore)
+        value = options.delete(attribute.underscore.to_sym)
         svg.css("path[#{attribute}]").each do |item|
           item[attribute] = value.to_s
         end if value
