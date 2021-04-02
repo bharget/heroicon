@@ -4,6 +4,8 @@ module Heroicon
   class Icon
     attr_reader :name, :variant, :options
 
+    EDITABLE_ATTRIBUTES = %w[stroke-width].freeze
+
     def initialize(name:, variant:, options:)
       @name = name
       @variant = safe_variant(variant)
@@ -15,10 +17,14 @@ module Heroicon
 
       doc = Nokogiri::HTML::DocumentFragment.parse(file)
       svg = doc.at_css "svg"
-      stroke_width = options.delete(:stroke_width)
-      svg.css("path[stroke-width]").each do |item|
-        item["stroke-width"] = stroke_width.to_s
-      end if stroke_width
+
+      EDITABLE_ATTRIBUTES.each do |attribute|
+        value = options.delete(attribute.underscore)
+        svg.css("path[#{attribute}]").each do |item|
+          item[attribute] = value.to_s
+        end if value
+      end
+
       options.each do |key, value|
         svg[key.to_s] = value
       end
