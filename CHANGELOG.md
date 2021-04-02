@@ -7,6 +7,11 @@ This project adheres to [Semantic Versioning](https://semver.org).
 This file is auto-generated so please do not edit it.
 
 ----
+## [0.3.0] - Apr  1, 2021
+109e472
+### Features
+- Allow HTML attributes in options (#3)
+----
 ## [0.2.3] - Feb  3, 2021
 b30c44e
 ### Bug Fixes
