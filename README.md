@@ -44,7 +44,7 @@ Heroicon comes with two variants, `:outline` and `:solid`. By default it uses th
 <%= heroicon "search", variant: :outline %>
 ```
 
-You can also pass a class to use on the icon.
+You can also pass HTML options directly to the icon.
 
 ```rb
 <%= heroicon "search", options: { class: "text-primary-500" } %>
