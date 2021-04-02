@@ -15,7 +15,9 @@ module Heroicon
 
       doc = Nokogiri::HTML::DocumentFragment.parse(file)
       svg = doc.at_css "svg"
-      svg["class"] = options[:class] if options[:class].present?
+      options.each do |key, value|
+        svg[key.to_s] = value
+      end
 
       doc
     end
