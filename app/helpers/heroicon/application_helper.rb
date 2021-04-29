@@ -2,12 +2,12 @@
 
 module Heroicon
   module ApplicationHelper
-    def heroicon(name, variant: Heroicon.configuration.variant, options: {}, path_attributes: {})
+    def heroicon(name, variant: Heroicon.configuration.variant, options: {}, path_options: {})
       raw Heroicon::Icon.render(
         name: name,
         variant: variant,
         options: options,
-        path_attributes: path_attributes
+        path_options: path_options
       )
     end
   end

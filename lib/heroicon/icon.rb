@@ -4,11 +4,11 @@ module Heroicon
   class Icon
     attr_reader :name, :variant, :options
 
-    def initialize(name:, variant:, options:, path_attributes:)
+    def initialize(name:, variant:, options:, path_options:)
       @name = name
       @variant = safe_variant(variant)
       @options = options
-      @path_attributes = path_attributes
+      @path_options = path_options
     end
 
     def render
@@ -17,7 +17,7 @@ module Heroicon
       doc = Nokogiri::HTML::DocumentFragment.parse(file)
       svg = doc.at_css "svg"
 
-      @path_attributes.each do |key, value|
+      @path_options.each do |key, value|
         attribute = key.to_s.dasherize
         svg.css("path[#{attribute}]").each do |item|
           item[attribute] = value.to_s
