@@ -2,4 +2,8 @@
 
 Heroicon.configure do |config|
   config.variant = :solid # Options are :solid and :outline
+
+  # You can set a default class, which will get applied to every icon. To do so,
+  # uncomment the following line and add a class name.
+  # config.default_class = 'h-6 w-6'
 end
