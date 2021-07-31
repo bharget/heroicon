@@ -36,6 +36,7 @@ jobs:
         run: |
           bundle exec appraisal rails-5-2 bundle install
           bundle exec appraisal rails-5-2 rake test
+
   lint:
     runs-on: ubuntu-latest
     strategy:
