@@ -22,8 +22,6 @@ jobs:
           gem update --system
           gem install bundler
           bundle install --jobs 4 --retry 3
-      - name: Lint
-        run: bundle exec rake lint
 
       - name: Test against rails main
         if: ${{ matrix.ruby == 2.7 }}
@@ -38,3 +36,15 @@ jobs:
         run: |
           bundle exec appraisal rails-5-2 bundle install
           bundle exec appraisal rails-5-2 rake test
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby: [2.6]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - run: bundle exec rake lint
