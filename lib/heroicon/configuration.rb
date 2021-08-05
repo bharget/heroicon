@@ -3,14 +3,12 @@
 module Heroicon
   class Configuration
     DEFAULT_VARIANT = :solid
-    DEFAULT_CLASS = ""
 
     attr_accessor :variant
     attr_accessor :default_class
 
     def initialize
       @variant = DEFAULT_VARIANT
-      @default_class = DEFAULT_CLASS
     end
   end
 
