@@ -6,7 +6,7 @@ module Heroicon
       raw Heroicon::Icon.render(
         name: name,
         variant: variant,
-        options: options.tap { |opts| opts[:class] ||= Heroicon.configuration.default_class },
+        options: options,
         path_options: path_options
       )
     end

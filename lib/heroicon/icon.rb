@@ -24,6 +24,8 @@ module Heroicon
         end
       end
 
+      prepend_default_class_name
+
       options.each do |key, value|
         svg[key.to_s] = value
       end
@@ -32,6 +34,28 @@ module Heroicon
     end
 
     private
+
+    ##
+    # Prepends the default CSS class name for an icon. You can provide a String, which will apply
+    # to all icons, or a Hash, which will apply to the specified variant.
+    #
+    # @example
+    #   Heroicon.configure do |config|
+    #     config.default_class = { solid: "h-5 w-5", outline: "h-6 w-6" }
+    #   end
+    #
+    #   #=> <svg class="h-5 w-5">...</svg>
+    def prepend_default_class_name
+      default_class_config = Heroicon.configuration.default_class
+
+      default_class = if default_class_config.is_a?(String)
+        default_class_config
+      elsif default_class_config.is_a?(Hash)
+        default_class_config[variant]
+      end
+
+      options[:class] = "#{default_class} #{options[:class]}".strip if default_class.present?
+    end
 
     def safe_variant(provided_variant)
       if %i[solid outline].include?(provided_variant.to_sym)
