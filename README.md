@@ -1,11 +1,11 @@
 # Heroicon
+
 [![Build Status](https://github.com/bharget/heroicon/workflows/CI/badge.svg)](https://github.com/bharget/heroicon/actions)
 [![Ruby Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/testdouble/standard)
 
 Ruby on Rails view helpers for the beautiful hand-crafted SVG icons, Heroicons.
 
- Used in production at [Morning Brew ☕](https://www.morningbrew.com/?utm_source=bharget_github)
-
+Used in production at [Morning Brew ☕](https://www.morningbrew.com/?utm_source=bharget_github)
 
 This gem has no official affiliation with Tailwind CSS or the Heroicon team (yet!). Check out their sites:
 
@@ -14,6 +14,7 @@ This gem has no official affiliation with Tailwind CSS or the Heroicon team (yet
 - [Heroicons](https://heroicons.com/?utm_source=bharget_github)
 
 ## Installation
+
 Add this line to your application's Gemfile:
 
 ```ruby
@@ -21,11 +22,13 @@ gem "heroicon"
 ```
 
 And then execute:
+
 ```bash
 $ bundle
 ```
 
 Run the installer
+
 ```bash
 $ rails g heroicon:install
 ```
@@ -38,7 +41,7 @@ To use a icon in your views, simply use the provided view helper with the name o
 <%= heroicon "search" %>
 ```
 
-Heroicon comes with two variants, `:outline` and `:solid`. The default variant is `:solid`. This can be changed in `config/initializers/heroicon.rb`, which is generated during installation. To overwrite this in the view, use
+Heroicon comes with two variants, `:outline` and `:solid`. The default variant is `:solid`. This can be changed in `config/initializers/heroicon.rb`, which is generated during installation (See [Configuration](#configuration)). To overwrite this in the view, use
 
 ```rb
 <%= heroicon "search", variant: :outline %>
@@ -51,6 +54,27 @@ You can also pass HTML options directly to the icon.
 ```
 
 Heroicon currently supports icons up to [`Version 1.0.1`](https://github.com/tailwindlabs/heroicons/releases/tag/v1.0.1). If there is a icon that is missing, feel free to contribute by following our contributing guide below.
+
+# Configuration
+
+After running `rails g heroicon:install` in the installation step, a configuration file will be created at `config/initializers/heroicon.rb`.
+
+Currently there are two configuration options:
+
+- `variant`: The default variant to use if no variant is specified in the view. Defaults to `:solid`.
+  - You can set this to either `:outline` or `:solid`.
+- `default_class`: A default class that gets applied to every icon.
+  - This accepts either a String to apply to every icon, or a Hash, which applies the class based on the variant of the icon.
+  - _Note: If you use the `default_class` option with PurgeCSS (or other alternatives), make sure you added the classes you want to use to the generated CSS file. For PurgeCSS, you may want to add `config/intializers/heroicon.rb` to the list of purged paths._
+
+An example configuration looks like this:
+
+```ruby
+Heroicon.configure do |config|
+  config.variant = :solid
+  config.default_class = {solid: "h-5 w-5", outline: "h-6 w-6"}
+end
+```
 
 ## Contributing
 
@@ -71,4 +95,5 @@ bundle exec rake test
 ```
 
 ## License
+
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
