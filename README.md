@@ -65,7 +65,7 @@ Currently there are two configuration options:
   - You can set this to either `:outline` or `:solid`.
 - `default_class`: A default class that gets applied to every icon.
   - This accepts either a String to apply to every icon, or a Hash, which applies the class based on the variant of the icon.
-  - _Note: If you use the `default_class` option with PurgeCSS (or other alternatives), make sure you added the classes you want to use to the generated CSS file. For PurgeCSS, you may want to add `config/intializers/heroicon.rb` to the list of purged paths._
+  - _Note: If you use the `default_class` option with PurgeCSS (or other alternatives), make sure you add the classes you want to use to the generated CSS file. For PurgeCSS, you may want to add `config/intializers/heroicon.rb` to the list of purged paths._
 
 An example configuration looks like this:
 
