@@ -46,8 +46,27 @@ class Heroicon::IconTest < ActiveSupport::TestCase
       assert_kind_of Nokogiri::HTML::DocumentFragment, subject.render
     end
 
-    it "sets a default class on the generated svg" do
-      assert_equal "h-6 w-6", subject.render.at_css("svg").attributes["class"].value
+    context "default class present" do
+      context "default class is a hash" do
+        it "prepends the default variant class" do
+          Heroicon.configuration.stubs(:default_class).returns({solid: "foobar"})
+          subject.stubs(:variant).returns(:solid)
+          assert_equal "foobar", subject.render.at_css("svg").attributes["class"].value
+        end
+      end
+
+      context "default class is a string" do
+        it "prepends the default variant class" do
+          Heroicon.configuration.stubs(:default_class).returns("foobar")
+          subject.stubs(:variant).returns(:solid)
+          assert_equal "foobar", subject.render.at_css("svg").attributes["class"].value
+        end
+      end
+
+      it "prepends a default class to the svg" do
+        subject.options[:class] = "foo"
+        assert_equal "h-6 w-6 foo", subject.render.at_css("svg").attributes["class"].value
+      end
     end
 
     it "puts all options on the generated svg" do
