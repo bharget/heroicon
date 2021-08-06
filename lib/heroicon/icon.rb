@@ -2,7 +2,7 @@
 
 module Heroicon
   class Icon
-    attr_reader :name, :variant, :options
+    attr_reader :name, :variant, :options, :path_options
 
     def initialize(name:, variant:, options:, path_options:)
       @name = name
@@ -17,7 +17,7 @@ module Heroicon
       doc = Nokogiri::HTML::DocumentFragment.parse(file)
       svg = doc.at_css "svg"
 
-      @path_options.each do |key, value|
+      path_options.each do |key, value|
         attribute = key.to_s.dasherize
         svg.css("path[#{attribute}]").each do |item|
           item[attribute] = value.to_s
@@ -78,13 +78,15 @@ module Heroicon
     def warning
       return unless Rails.env.development?
 
-      <<-HTML
+      script = <<-HTML
       <script type="text/javascript">
       //<![CDATA[
       console.warn("Heroicon: Failed to find heroicon: #{name}")
       //]]>
       </script>
       HTML
+
+      script.strip
     end
 
     class << self
