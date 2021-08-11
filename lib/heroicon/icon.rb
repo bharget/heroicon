@@ -46,6 +46,8 @@ module Heroicon
     #
     #   #=> <svg class="h-5 w-5">...</svg>
     def prepend_default_class_name
+      return if disable_default_class?
+
       default_class_config = Heroicon.configuration.default_class
 
       default_class = if default_class_config.is_a?(String)
@@ -55,6 +57,10 @@ module Heroicon
       end
 
       options[:class] = "#{default_class} #{options[:class]}".strip if default_class.present?
+    end
+
+    def disable_default_class?
+      @disable_default_class ||= !!options.delete(:disable_default_class)
     end
 
     def safe_variant(provided_variant)

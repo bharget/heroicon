@@ -7,7 +7,7 @@ module Heroicon
         name: name,
         variant: variant,
         options: options,
-        path_options: path_options
+        path_options: path_options,
       )
     end
   end

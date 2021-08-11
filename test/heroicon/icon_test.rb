@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "test_helper"
+require "pry"
 
 class Heroicon::IconTest < ActiveSupport::TestCase
   let(:default_args) { {name: "user", variant: :outline, options: {}, path_options: {}} }
@@ -47,6 +48,15 @@ class Heroicon::IconTest < ActiveSupport::TestCase
     end
 
     context "default class present" do
+      context "disable_default_class is true" do
+        it "disables prepending the class" do
+          Heroicon.configuration.stubs(:default_class).returns({solid: "foobar"})
+          subject.options[:disable_default_class] = true
+          subject.options[:class] = "custom_class"
+          assert_equal "custom_class", subject.render.at_css("svg").attributes["class"].value
+        end
+      end
+
       context "default class is a hash" do
         it "prepends the default variant class" do
           Heroicon.configuration.stubs(:default_class).returns({solid: "foobar"})

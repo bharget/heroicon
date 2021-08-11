@@ -65,6 +65,7 @@ Currently there are two configuration options:
   - You can set this to either `:outline` or `:solid`. Defaults to `:solid`.
 - `default_class`: A default class that gets applied to every icon.
   - This accepts either a String to apply to every icon, or a Hash, which applies the class based on the variant of the icon (see the example below).
+  - You can disable this on a per-icon basis by passing `disable_default_class: true` in the options hash within the view.
   - _Note: If you use the `default_class` option with PurgeCSS (or something similar), make sure you add the classes you want to use to the generated CSS file. For PurgeCSS, you may want to add `config/intializers/heroicon.rb` to the list of purged paths._
 
 An example configuration looks like this:
@@ -74,6 +75,12 @@ Heroicon.configure do |config|
   config.variant = :solid
   config.default_class = {solid: "h-5 w-5", outline: "h-6 w-6"}
 end
+```
+
+Disabling the default class in the view:
+
+```rb
+<%= heroicon "search", options: { class: "custom-class" disable_default_class: true } %>
 ```
 
 ## Contributing
