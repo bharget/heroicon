@@ -7,21 +7,21 @@ require "pathname"
 RELEASE_TYPE = ARGV[0]
 
 class BranchCheck
-  attr_reader :allowed_branches, :current_branch
+  attr_reader :allowed_branch_prefix, :current_branch
 
   def initialize
     @current_branch = `git rev-parse --abbrev-ref HEAD`.strip
-    @allowed_branches = ["master"]
+    @allowed_branch_prefix = "release-"
   end
 
   def check
     return true if valid?
 
-    abort("\nError: Not on a valid release branch. Must be on one of #{allowed_branches}.\n")
+    abort("\nError: Not on a valid release branch. Must begin with '#{allowed_branch_prefix}'.\n")
   end
 
   def valid?
-    allowed_branches.include? current_branch
+    current_branch.start_with?(allowed_branch_prefix)
   end
 end
 
@@ -111,14 +111,16 @@ File.write("#{APP_ROOT}/lib/heroicon/version.rb", version_file_contents)
 puts "--- Update CHANGELOG ---"
 `bundle exec rake changelog:refresh`
 
-puts "--- Adding Files ---"
-`git add .`
+# puts "--- Adding Files ---"
+# `git add .`
 
-puts "--- Commiting Changes ---"
-`git commit -m 'Bump version to #{new_version}'`
+# puts "--- Commiting Changes ---"
+# `git commit -m 'Bump version to #{new_version}'`
 
-puts "--- Pushing Changes ---"
-`git push origin master`
+# puts "--- Pushing Changes ---"
 
-puts "--- Publishing Gem ---"
-`bundle exec rake release`
+# current_branch = `git rev-parse --abbrev-ref HEAD`.strip
+# `git push -u origin #{current_branch}`
+
+puts "--- Ready ---"
+puts "To finish the release, merge the release into master, pull master locally, and run 'bundle exec rake release'."
