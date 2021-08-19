@@ -2,10 +2,13 @@
 
 module Heroicon
   class Configuration
+    DEFAULT_VARIANT = :solid
+
     attr_accessor :variant
+    attr_accessor :default_class
 
     def initialize
-      @variant = :solid
+      @variant = DEFAULT_VARIANT
     end
   end
 
