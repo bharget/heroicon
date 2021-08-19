@@ -108,19 +108,19 @@ FILE
 
 File.write("#{APP_ROOT}/lib/heroicon/version.rb", version_file_contents)
 
-puts "--- Update CHANGELOG ---"
+puts "--- Updating CHANGELOG ---"
 `bundle exec rake changelog:refresh`
 
-# puts "--- Adding Files ---"
-# `git add .`
+puts "--- Adding Files ---"
+`git add .`
 
-# puts "--- Commiting Changes ---"
-# `git commit -m 'Bump version to #{new_version}'`
+puts "--- Commiting Changes ---"
+`git commit -m 'Bump version to #{new_version}'`
 
-# puts "--- Pushing Changes ---"
+puts "--- Pushing Changes ---"
 
-# current_branch = `git rev-parse --abbrev-ref HEAD`.strip
-# `git push -u origin #{current_branch}`
+current_branch = `git rev-parse --abbrev-ref HEAD`.strip
+`git push -u origin #{current_branch}`
 
 puts "--- Ready ---"
 puts "To finish the release, merge the release into master, pull master locally, and run 'bundle exec rake release'."
