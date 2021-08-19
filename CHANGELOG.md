@@ -7,6 +7,13 @@ This project adheres to [Semantic Versioning](https://semver.org).
 This file is auto-generated so please do not edit it.
 
 ----
+## [0.4.0] - Aug 19, 2021
+257a1a3
+### Changes
+- Update icons based on heroicons v1.0.1 (#5) 
+### Features
+- Add Default Class Option (#10)
+----
 ## [0.3.0] - Apr  1, 2021
 109e472
 ### Features
