@@ -5,7 +5,7 @@
 
 Ruby on Rails view helpers for the beautiful hand-crafted SVG icons, Heroicons.
 
-Used in production at [Morning Brew ☕](https://www.morningbrew.com/?utm_source=bharget_github)
+Used in production at [beehiiv 🐝](https://www.beehiiv.com/?utm_source=bharget_github)
 
 This gem has no official affiliation with Tailwind CSS or the Heroicon team (yet!). Check out their sites:
 
