@@ -80,7 +80,7 @@ end
 Disabling the default class in the view:
 
 ```rb
-<%= heroicon "search", options: { class: "custom-class" disable_default_class: true } %>
+<%= heroicon "search", options: { class: "custom-class", disable_default_class: true } %>
 ```
 
 ## Contributing
