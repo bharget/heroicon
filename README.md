@@ -66,7 +66,21 @@ Currently there are two configuration options:
 - `default_class`: A default class that gets applied to every icon.
   - This accepts either a String to apply to every icon, or a Hash, which applies the class based on the variant of the icon (see the example below).
   - You can disable this on a per-icon basis by passing `disable_default_class: true` in the options hash within the view.
-  - _Note: If you use the `default_class` option with PurgeCSS (or something similar), make sure you add the classes you want to use to the generated CSS file. For PurgeCSS, you may want to add `config/intializers/heroicon.rb` to the list of purged paths._
+
+**Note:** If you enable the `default_class` config, make sure to include `config/intializers/heroicon.rb` in the list of purged paths. For TailwindCSS 3.0+, you should have something like this in your `tailwind.config.js`:
+
+```js
+module.exports = {
+  //...
+  content: [
+    './app/helpers/**/*.rb',
+    './app/javascript/**/*.js',
+    './app/views/**/*',
+    './config/initializers/heroicon.rb', // 👈
+  ],
+  //...
+}
+```
 
 An example configuration looks like this:
 
