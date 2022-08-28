@@ -53,7 +53,7 @@ You can also pass HTML options directly to the icon.
 <%= heroicon "search", options: { class: "text-primary-500" } %>
 ```
 
-Heroicon currently supports icons up to [`Version 1.0.1`](https://github.com/tailwindlabs/heroicons/releases/tag/v1.0.1). If there is a icon that is missing, feel free to contribute by following our contributing guide below.
+Heroicon currently supports icons up to [`Version 2.0.0`](https://github.com/tailwindlabs/heroicons/releases/tag/v2.0.0). If there is a icon that is missing, feel free to contribute by following our contributing guide below.
 
 # Configuration
 
