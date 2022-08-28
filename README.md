@@ -41,7 +41,7 @@ To use a icon in your views, simply use the provided view helper with the name o
 <%= heroicon "search" %>
 ```
 
-Heroicon comes with 3 variants, `:outline`, `:solid` and `:solid_20`. The default variant is `:solid`. This can be changed in `config/initializers/heroicon.rb`, which is generated during installation (See [Configuration](#configuration)). To overwrite this in the view, use
+Heroicon comes with 3 variants, `:outline`, `:solid` and `:mini`. The default variant is `:solid`. This can be changed in `config/initializers/heroicon.rb`, which is generated during installation (See [Configuration](#configuration)). To overwrite this in the view, use
 
 ```rb
 <%= heroicon "search", variant: :outline %>
