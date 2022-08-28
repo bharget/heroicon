@@ -64,7 +64,7 @@ module Heroicon
     end
 
     def safe_variant(provided_variant)
-      if %i[solid outline].include?(provided_variant.to_sym)
+      if %i[solid outline solid_20].include?(provided_variant.to_sym)
         provided_variant
       else
         :solid
