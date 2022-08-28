@@ -27,7 +27,7 @@ module Heroicon
       prepend_default_class_name
 
       options.each do |key, value|
-        svg[key.to_s] = value
+        svg[key.to_s.dasherize] = value
       end
 
       doc
