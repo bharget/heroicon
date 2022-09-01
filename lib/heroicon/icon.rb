@@ -27,7 +27,7 @@ module Heroicon
       prepend_default_class_name
 
       options.each do |key, value|
-        svg[key.to_s] = value
+        svg[key.to_s.dasherize] = value
       end
 
       doc
@@ -41,7 +41,7 @@ module Heroicon
     #
     # @example
     #   Heroicon.configure do |config|
-    #     config.default_class = { solid: "h-5 w-5", outline: "h-6 w-6" }
+    #     config.default_class = { solid: "h-5 w-5", outline: "h-6 w-6", mini: "h-4 w-4" }
     #   end
     #
     #   #=> <svg class="h-5 w-5">...</svg>
@@ -64,7 +64,7 @@ module Heroicon
     end
 
     def safe_variant(provided_variant)
-      if %i[solid outline].include?(provided_variant.to_sym)
+      if %i[solid outline mini].include?(provided_variant.to_sym)
         provided_variant
       else
         :solid

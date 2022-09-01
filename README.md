@@ -41,7 +41,7 @@ To use a icon in your views, simply use the provided view helper with the name o
 <%= heroicon "search" %>
 ```
 
-Heroicon comes with two variants, `:outline` and `:solid`. The default variant is `:solid`. This can be changed in `config/initializers/heroicon.rb`, which is generated during installation (See [Configuration](#configuration)). To overwrite this in the view, use
+Heroicon comes with 3 variants, `:outline`, `:solid` and `:mini`. The default variant is `:solid`. This can be changed in `config/initializers/heroicon.rb`, which is generated during installation (See [Configuration](#configuration)). To overwrite this in the view, use
 
 ```rb
 <%= heroicon "search", variant: :outline %>
@@ -53,7 +53,7 @@ You can also pass HTML options directly to the icon.
 <%= heroicon "search", options: { class: "text-primary-500" } %>
 ```
 
-Heroicon currently supports icons up to [`Version 1.0.1`](https://github.com/tailwindlabs/heroicons/releases/tag/v1.0.1). If there is a icon that is missing, feel free to contribute by following our contributing guide below.
+Heroicon currently supports icons matching [`Version 2.0.10`](https://github.com/tailwindlabs/heroicons/releases/tag/v2.0.10). If there is an icon that is missing or a new version released, feel free to contribute by following our contributing guide below.
 
 # Configuration
 
@@ -87,7 +87,7 @@ An example configuration looks like this:
 ```ruby
 Heroicon.configure do |config|
   config.variant = :solid
-  config.default_class = {solid: "h-5 w-5", outline: "h-6 w-6"}
+  config.default_class = {solid: "h-5 w-5", outline: "h-6 w-6", mini: "h-4 w-4"}
 end
 ```
 

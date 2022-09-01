@@ -85,8 +85,8 @@ class Heroicon::IconTest < ActiveSupport::TestCase
     end
 
     it "allows setting path stroke width" do
-      subject.path_options[:stroke_width] = "foo"
-      assert_equal "foo", subject.render.at_css("path").attributes["stroke-width"].value
+      subject.path_options[:stroke_linecap] = "foo"
+      assert_equal "foo", subject.render.at_css("path").attributes["stroke-linecap"].value
     end
 
     context "name not found" do
