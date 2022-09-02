@@ -9,7 +9,8 @@ This file is auto-generated so please do not edit it.
 ----
 ## [1.0.0] - Sep  2, 2022
 01dab35
-
+### Changes
+- Update icons based on heroicons v2.0.10 (#19) 
 ----
 ## [0.4.0] - Aug 19, 2021
 257a1a3
