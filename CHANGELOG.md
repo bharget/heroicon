@@ -7,6 +7,11 @@ This project adheres to [Semantic Versioning](https://semver.org).
 This file is auto-generated so please do not edit it.
 
 ----
+## [1.0.0] - Sep  2, 2022
+758969c
+### Changes
+- Heroicons v2.0.10 (#19)
+----
 ## [0.4.0] - Aug 19, 2021
 257a1a3
 ### Changes
