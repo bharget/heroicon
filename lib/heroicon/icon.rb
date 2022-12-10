@@ -48,15 +48,33 @@ module Heroicon
     def prepend_default_class_name
       return if disable_default_class?
 
-      default_class_config = Heroicon.configuration.default_class
+      options[:class] = combine_classes_with_default_class if default_class.present?
+    end
 
-      default_class = if default_class_config.is_a?(String)
+    def combine_classes_with_default_class
+      default_class_list&.concat(additional_class_list)&.uniq&.join(" ")
+    end
+
+    def default_class_list
+      default_class&.blank? ? [] : default_class&.strip&.split&.compact
+    end
+
+    def additional_class_list
+      options[:class].blank? ? [] : options[:class]&.strip&.split&.compact
+    end
+
+    def default_class
+      if default_class_config.is_a?(String)
         default_class_config
       elsif default_class_config.is_a?(Hash)
         default_class_config[variant]
+      else
+        ""
       end
+    end
 
-      options[:class] = "#{default_class} #{options[:class]}".strip if default_class.present?
+    def default_class_config
+      @default_class_config ||= Heroicon.configuration.default_class
     end
 
     def disable_default_class?
