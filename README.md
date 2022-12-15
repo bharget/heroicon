@@ -38,19 +38,19 @@ $ rails g heroicon:install
 To use a icon in your views, simply use the provided view helper with the name of an icon.
 
 ```rb
-<%= heroicon "search" %>
+<%= heroicon "magnifying-glass" %>
 ```
 
 Heroicon comes with 3 variants, `:outline`, `:solid` and `:mini`. The default variant is `:solid`. This can be changed in `config/initializers/heroicon.rb`, which is generated during installation (See [Configuration](#configuration)). To overwrite this in the view, use
 
 ```rb
-<%= heroicon "search", variant: :outline %>
+<%= heroicon "magnifying-glass", variant: :outline %>
 ```
 
 You can also pass HTML options directly to the icon.
 
 ```rb
-<%= heroicon "search", options: { class: "text-primary-500" } %>
+<%= heroicon "magnifying-glass", options: { class: "text-primary-500" } %>
 ```
 
 Heroicon currently supports icons matching [`Version 2.0.10`](https://github.com/tailwindlabs/heroicons/releases/tag/v2.0.10). If there is an icon that is missing or a new version released, feel free to contribute by following our contributing guide below.
