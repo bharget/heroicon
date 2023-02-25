@@ -2,7 +2,6 @@ PATH
   remote: .
   specs:
     heroicon (1.0.0)
-      actionmailbox (>= 5.2)
       actionmailer (>= 5.2)
       actionpack (>= 5.2)
       actiontext (>= 5.2)
@@ -17,16 +16,6 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    actionmailbox (7.0.4.2)
-      actionpack (= 7.0.4.2)
-      activejob (= 7.0.4.2)
-      activerecord (= 7.0.4.2)
-      activestorage (= 7.0.4.2)
-      activesupport (= 7.0.4.2)
-      mail (>= 2.7.1)
-      net-imap
-      net-pop
-      net-smtp
     actionmailer (7.0.4.2)
       actionpack (= 7.0.4.2)
       actionview (= 7.0.4.2)
