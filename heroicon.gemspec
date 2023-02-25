@@ -26,7 +26,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "activejob", ">= 5.2"
   spec.add_dependency "activemodel", ">= 5.2"
   spec.add_dependency "activerecord", ">= 5.2"
-  spec.add_dependency "activestorage", ">= 5.2"
   spec.add_dependency "activesupport", ">= 5.2"
   spec.add_dependency "railties", ">= 5.2"
 
