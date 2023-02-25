@@ -10,4 +10,4 @@ test/dummy/tmp/
 
 gemfiles/*.gemfile.lock
 
-# Gemfile.lock
+Gemfile.lock
