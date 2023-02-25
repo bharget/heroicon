@@ -4,7 +4,7 @@ require "test_helper"
 require "pry"
 
 class Heroicon::IconTest < ActiveSupport::TestCase
-  let(:default_args) { {name: "user", variant: :outline, options: {}, path_options: {}} }
+  let(:default_args) { { name: "user", variant: :outline, options: {}, path_options: {}} }
   subject { Heroicon::Icon.new(**default_args) }
 
   describe "#initialize" do
@@ -74,6 +74,10 @@ class Heroicon::IconTest < ActiveSupport::TestCase
       end
 
       it "prepends a default class to the svg" do
+        Heroicon.configure do |config|
+          config.default_class = { solid: "h-5 w-5", outline: "h-6 w-6", mini: "h-4 w-4" }
+        end
+
         subject.options[:class] = "foo"
         assert_equal "h-6 w-6 foo", subject.render.at_css("svg").attributes["class"].value
       end
