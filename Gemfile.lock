@@ -2,7 +2,6 @@ PATH
   remote: .
   specs:
     heroicon (1.0.0)
-      actioncable (>= 5.2)
       actionmailbox (>= 5.2)
       actionmailer (>= 5.2)
       actionpack (>= 5.2)
@@ -18,11 +17,6 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    actioncable (7.0.4.2)
-      actionpack (= 7.0.4.2)
-      activesupport (= 7.0.4.2)
-      nio4r (~> 2.0)
-      websocket-driver (>= 0.6.1)
     actionmailbox (7.0.4.2)
       actionpack (= 7.0.4.2)
       activejob (= 7.0.4.2)
@@ -123,7 +117,6 @@ GEM
       timeout
     net-smtp (0.3.3)
       net-protocol
-    nio4r (2.5.8)
     nokogiri (1.14.2-arm64-darwin)
       racc (~> 1.4)
     parallel (1.22.1)
@@ -181,9 +174,6 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.4.2)
-    websocket-driver (0.7.5)
-      websocket-extensions (>= 0.1.0)
-    websocket-extensions (0.1.5)
     zeitwerk (2.6.7)
 
 PLATFORMS
