@@ -20,7 +20,18 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = ">= 2.5"
 
-  spec.add_dependency "rails", ">= 5.2"
+  spec.add_dependency "actioncable", ">= 5.2"
+  spec.add_dependency "actionmailbox", ">= 5.2"
+  spec.add_dependency "actionmailer", ">= 5.2"
+  spec.add_dependency "actionpack", ">= 5.2"
+  spec.add_dependency "actiontext", ">= 5.2"
+  spec.add_dependency "actionview", ">= 5.2"
+  spec.add_dependency "activejob", ">= 5.2"
+  spec.add_dependency "activemodel", ">= 5.2"
+  spec.add_dependency "activerecord", ">= 5.2"
+  spec.add_dependency "activestorage", ">= 5.2"
+  spec.add_dependency "activesupport", ">= 5.2"
+  spec.add_dependency "railties", ">= 5.2"
 
   spec.add_development_dependency "appraisal"
   spec.add_development_dependency "pry"
