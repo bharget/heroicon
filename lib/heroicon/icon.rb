@@ -82,7 +82,7 @@ module Heroicon
     end
 
     def safe_variant(provided_variant)
-      if %i[solid outline mini].include?(provided_variant.to_sym)
+      if %i[solid outline mini micro].include?(provided_variant.to_sym)
         provided_variant
       else
         :solid
