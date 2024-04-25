@@ -7,11 +7,11 @@ require "heroicon/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |spec|
-  spec.name = "heroicon"
+  spec.name = "heroicon-ruby"
   spec.version = Heroicon::VERSION
-  spec.authors = ["Benjamin Hargett"]
-  spec.email = ["hargettbenjamin@gmail.com"]
-  spec.homepage = "https://github.com/bharget/heroicon"
+  spec.authors = ["Jarrett Lusso"]
+  spec.email = ["jclusso@gmail.com"]
+  spec.homepage = "https://github.com/jclusso/heroicon-ruby"
   spec.summary = "Rails View Helpers for Heroicons."
   spec.description = "Ruby on Rails view helpers for the beautiful hand-crafted SVG icons, Heroicons."
   spec.license = "MIT"

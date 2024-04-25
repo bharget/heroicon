@@ -1,24 +1,22 @@
 # Heroicon
 
-[![Build Status](https://github.com/bharget/heroicon/workflows/CI/badge.svg)](https://github.com/bharget/heroicon/actions)
-[![Ruby Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/testdouble/standard)
+[![Gem Version](https://badge.fury.io/rb/heroicon-ruby.svg)](https://rubygems.org/gems/heroicon-ruby)
+[![Build Status](https://github.com/jclusso/heroicon-ruby/workflows/CI/badge.svg)](https://github.com/jclusso/heroicon-ruby/actions)
 
 Ruby on Rails view helpers for the beautiful hand-crafted SVG icons, Heroicons.
 
-Used in production at [beehiiv 🐝](https://www.beehiiv.com/?utm_source=bharget_github)
+This gem has no official affiliation with Tailwind CSS or the Heroicon team. Check out their sites:
 
-This gem has no official affiliation with Tailwind CSS or the Heroicon team (yet!). Check out their sites:
-
-- [Tailwind CSS](https://tailwindcss.com/?utm_source=bharget_github)
-- [Tailwind UI](https://tailwindui.com/?utm_source=bharget_github)
-- [Heroicons](https://heroicons.com/?utm_source=bharget_github)
+- [Tailwind CSS](https://tailwindcss.com/?utm_source=jclusso_heroicon-ruby_github)
+- [Tailwind UI](https://tailwindui.com/?utm_source=jclusso_heroicon-ruby_github)
+- [Heroicons](https://heroicons.com/?utm_source=jclusso_heroicon-ruby_github)
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "heroicon"
+gem "heroicon-ruby"
 ```
 
 And then execute:
@@ -101,15 +99,15 @@ Disabling the default class in the view:
 
 Anyone is encouraged to help improve this project. Here are a few ways you can help:
 
-- [Report bugs](https://github.com/bharget/heroicon/issues)
-- Fix bugs and [submit pull requests](https://github.com/bharget/heroicon/pulls)
+- [Report bugs](https://github.com/jclusso/heroicon-ruby/issues)
+- Fix bugs and [submit pull requests](https://github.com/jclusso/heroicon-ruby/pulls)
 - Write, clarify, or fix documentation
 - Suggest or add new features
 
 To get started with development:
 
 ```
-git clone https://github.com/bharget/heroicon.git
+git clone https://github.com/jclusso/heroicon-ruby.git
 cd heroicon
 bundle install
 bundle exec rake test
