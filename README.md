@@ -24,13 +24,13 @@ gem "heroicon"
 And then execute:
 
 ```bash
-$ bundle
+bundle
 ```
 
 Run the installer
 
 ```bash
-$ rails g heroicon:install
+rails g heroicon:install
 ```
 
 ## Usage
