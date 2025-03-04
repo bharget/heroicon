@@ -15,7 +15,7 @@ module Heroicon
       return warning unless file.present?
 
       doc = Nokogiri::HTML::DocumentFragment.parse(file)
-      svg = doc.at_css "svg"
+      svg = doc.at_css 'svg'
 
       path_options.each do |key, value|
         attribute = key.to_s.dasherize
@@ -52,7 +52,7 @@ module Heroicon
     end
 
     def combine_classes_with_default_class
-      default_class_list&.concat(additional_class_list)&.uniq&.join(" ")
+      default_class_list&.concat(additional_class_list)&.uniq&.join(' ')
     end
 
     def default_class_list
@@ -69,7 +69,7 @@ module Heroicon
       elsif default_class_config.is_a?(Hash)
         default_class_config[variant]
       else
-        ""
+        ''
       end
     end
 
@@ -90,7 +90,7 @@ module Heroicon
     end
 
     def file
-      @file ||= File.read(file_path).force_encoding("UTF-8")
+      @file ||= File.read(file_path).force_encoding('UTF-8')
     rescue
       nil
     end

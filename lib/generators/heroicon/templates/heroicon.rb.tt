@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Heroicon.configure do |config|
-  config.variant = :solid # Options are :solid, :outline and :mini
+  config.variant = :solid # Options are :solid, :outline, :mini and :micro
 
   ##
   # You can set a default class, which will get applied to every icon with
